@@ -21,6 +21,7 @@ massive({
 
     app.post("/api/users", users.create);
     app.get("/api/users", users.list);
+    app.get("/api/login", users.login);
     app.get("/api/users/:id", users.getById);
     app.get("/api/users/:id/profile", users.getProfile);
 
