@@ -28,10 +28,10 @@ massive({
     app.get("/api/post/:id", post.get);
     app.get("/api/post", post.getall);
     app.get("/api/post/user/:userid", post.getuserpost);
-    app.post("/api/post/:id/update", post.update);
+    app.put("/api/post/:id/update", post.update);
 
     app.post("/api/post/addcomment", comments.create);
-    app.post("/api/post/comment/:id/update", comments.update);
+    app.put("/api/post/comment/:id/update", comments.update);
     // app.get("/api/post/:id/comments", post.get);
 
     const PORT = 3003;
