@@ -32,7 +32,6 @@ massive({
 
     app.post("/api/post/addcomment", comments.create);
     app.put("/api/post/comment/:id/update", comments.update);
-    // app.get("/api/post/:id/comments", post.get);
 
     const PORT = 3003;
     app.listen(PORT, () => {

@@ -3,14 +3,14 @@ function create(req, res) {
 
   const { email, password } = req.body;
 
-  db.users // heres the new stuff, using massive to actually query the database.
+  db.users 
     .save({
       email,
       password
     })
-    .then(user => res.status(201).json(user)) // returns a promise so we need to use .then
+    .then(user => res.status(201).json(user))
     .catch(err => {
-      console.error(err); // if something happens we handle the error as well.
+      console.error(err);
       res.status(500).end();
     });
 }
