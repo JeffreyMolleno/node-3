@@ -3,15 +3,26 @@ function create(req, res) {
 
   const { email, password } = req.body;
 
-  db.users 
-    .save({
-      email,
-      password
-    })
+  db.users
+    .insert(
+      {
+        email,
+        password,
+        user_profiles: [
+          {
+            userid: undefined,
+            about: null,
+            thumbnail: null
+          }
+        ]
+      },
+      {
+        deepInsert: true
+      }
+    )
     .then(user => res.status(201).json(user))
     .catch(err => {
       console.error(err);
-      res.status(500).end();
     });
 }
 
@@ -34,23 +45,23 @@ function getById(req, res) {
     .findOne(req.params.id)
     .then(user => res.status(200).json(user))
     .catch(err => {
-        console.error(err);
-        res.status(500).end();
-    })
+      console.error(err);
+      res.status(500).end();
+    });
 }
 
-function getProfile(req, res){
-    const db = req.app.get('db')
+function getProfile(req, res) {
+  const db = req.app.get("db");
 
-    db.user_profiles
-        .findOne({
-            userid: req.params.id,
-        })
-        .then(profile => res.status(200).json(profile))
-        .catch(err=>{
-            console.error(err);
-            res.status(500).end();
-        })
+  db.user_profiles
+    .findOne({
+      userid: req.params.id
+    })
+    .then(profile => res.status(200).json(profile))
+    .catch(err => {
+      console.error(err);
+      res.status(500).end();
+    });
 }
 
 module.exports = {
